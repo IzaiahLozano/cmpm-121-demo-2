@@ -33,6 +33,9 @@ let lineThickness: number = 2;
 let currentColor = getRandomColor(); 
 let currentRotation: number = getRandomRotation();
 
+const buttonPanel = document.createElement("div");
+
+
 function app_setup() {;
 
     //Canvas Settings
@@ -170,7 +173,7 @@ function undo_redo_behavior( canvas: HTMLCanvasElement) {
     const undo_btn = document.createElement('button');
     undo_btn.textContent = 'UNDO';
     undo_btn.id = 'undoButton';
-    document.body.appendChild(undo_btn);
+    buttonPanel.appendChild(undo_btn);
 
     undo_btn.addEventListener('click', () => {
         if (strokes.length > 0) {
@@ -186,7 +189,7 @@ function undo_redo_behavior( canvas: HTMLCanvasElement) {
     const redo_btn = document.createElement('button');
     redo_btn.textContent = 'REDO';
     redo_btn.id = 'redoButton';
-    document.body.appendChild(redo_btn);
+    buttonPanel.appendChild(redo_btn);
 
     redo_btn.addEventListener('click', () => {
         if (FIFObag.length > 0) {
@@ -383,6 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = app_setup(); 
     clear_behavior(canvas); 
     undo_redo_behavior(canvas);
+    document.body.append(buttonPanel);
     marker_behavior();
     drawing_behavior(canvas);
     tool_moved_behavior(canvas);
